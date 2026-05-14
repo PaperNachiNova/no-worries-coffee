@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ── PRIMARY SEO ── -->
+  <title>No Worries Coffee – Specialty Café & Matcha in Düsseldorf Flingern</title>
+  <meta name="description" content="Specialty Coffee, handgemachter Matcha und faire Preise direkt am Hermannplatz. Wechselnde internationale Röster, 4,9 ★ auf Google. Lindenstraße 142, 40233 Düsseldorf.">
+  <meta name="keywords" content="Specialty Coffee Düsseldorf, Kaffee Flingern, Matcha Düsseldorf, Café Hermannplatz, Third Wave Coffee Düsseldorf, Flat White Düsseldorf, Chai Latte Düsseldorf, No Worries Coffee">
+  <link rel="canonical" href="https://{{DOMAIN}}/">
+
+  <!-- ── OPEN GRAPH (Social Sharing) ── -->
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://{{DOMAIN}}/">
+  <meta property="og:title"       content="No Worries Coffee – Specialty Café in Düsseldorf Flingern">
+  <meta property="og:description" content="Specialty Coffee, handgemachter Matcha, faire Preise. Direkt am Hermannplatz. ★ 4,9 auf Google.">
+  <meta property="og:image"       content="https://{{DOMAIN}}/assets/img/og-image.jpg">
+  <meta property="og:locale"      content="de_DE">
+  <meta property="og:site_name"   content="No Worries Coffee">
+
+  <!-- ── TWITTER CARD ── -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="No Worries Coffee – Specialty Café Düsseldorf">
+  <meta name="twitter:description" content="Specialty Coffee & Matcha am Hermannplatz. ★ 4,9 auf Google.">
+  <meta name="twitter:image"       content="https://{{DOMAIN}}/assets/img/og-image.jpg">
+
+  <!-- ── STRUCTURED DATA: LocalBusiness ── -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "No Worries Coffee",
+    "description": "Specialty Coffee, handgemachter Matcha und faire Preise direkt am Hermannplatz in Düsseldorf Flingern. Wechselnde internationale Röster.",
+    "url": "https://{{DOMAIN}}",
+    "telephone": "{{TELEFON}}",
+    "email": "{{EMAIL_ADRESSE}}",
+    "priceRange": "€",
+    "servesCuisine": ["Kaffee", "Specialty Coffee", "Matcha", "Tee"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Lindenstraße 142",
+      "addressLocality": "Düsseldorf",
+      "addressRegion": "Nordrhein-Westfalen",
+      "postalCode": "40233",
+      "addressCountry": "DE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 51.2193,
+      "longitude": 6.8038
+    },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "08:30", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:30", "closes": "17:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday",   "opens": "11:00", "closes": "16:00" }
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "177",
+      "bestRating": "5"
+    },
+    "hasMap": "https://maps.google.com/?q=Lindenstra%C3%9Fe+142+40233+D%C3%BCsseldorf",
+    "sameAs": []
+  }
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F0EDE5;
+      --cream-dark: #E6E2D8;
+      --ink: #1A1706;
+      --caramel: #C8956C;
+      --muted: #7A7060;
+      --paper: #FDFAF5;
+      --ff: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.55; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--cream);
+      border-bottom: 1px solid rgba(26,23,6,.1);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-logo {
+      font-size: 1.25rem; font-weight: 900; letter-spacing: -.04em;
+      text-decoration: none; color: var(--ink);
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--muted);
+      font-size: .78rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--ink); }
+    @media (max-width: 640px) { .nav-links { display: none; } }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh; padding-top: 56px;
+      display: grid; grid-template-columns: 1fr 1fr;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 5rem 4rem 5rem 3rem;
+    }
+    .hero-eyebrow {
+      font-size: .72rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 1.5rem;
+    }
+    .hero-h1 {
+      font-size: clamp(3.2rem, 5.5vw, 5.5rem);
+      font-weight: 900; line-height: 1.0; letter-spacing: -.05em;
+      margin-bottom: 1.75rem;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--muted); max-width: 360px;
+      line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: inline-block;
+      background: var(--ink); color: var(--cream);
+      padding: .9rem 2.25rem; border-radius: 100px;
+      text-decoration: none; font-weight: 800; font-size: .9rem;
+      letter-spacing: .01em; transition: opacity .2s; align-self: flex-start;
+    }
+    .hero-cta:hover { opacity: .8; }
+    .hero-right {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #e8dfc8 0%, #c4a070 35%, #6b3a1f 70%, #2c1008 100%);
+    }
+    .hero-ring {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px; height: 340px; border-radius: 50%;
+      background: radial-gradient(circle at 38% 35%,
+        #fff4e8 0%, #d4956a 22%, #8b4010 55%, #2c1008 80%, #0f0400 100%);
+      box-shadow:
+        0 0 0 20px rgba(200,149,108,.12),
+        0 0 0 40px rgba(200,149,108,.06),
+        0 50px 100px rgba(10,4,0,.5);
+    }
+    .hero-ring::before {
+      content: '';
+      position: absolute; top: 18%; left: 22%;
+      width: 56%; height: 22%; border-radius: 50%;
+      background: rgba(255,244,232,.18);
+      transform: rotate(-15deg);
+      filter: blur(6px);
+    }
+    @media (max-width: 768px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { min-height: 260px; order: -1; }
+      .hero-left { padding: 2.5rem 1.5rem; }
+    }
+
+    /* ── RATING STRIP ── */
+    .rating-strip {
+      background: var(--ink); color: var(--cream);
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+      gap: 2.5rem; padding: 1.1rem 2rem; font-size: .875rem;
+    }
+    .rating-strip strong { font-weight: 900; font-size: 1.15rem; }
+    .rating-strip .rs-dot { opacity: .3; }
+    .rating-strip span { opacity: .65; }
+
+    /* ── SECTION CHROME ── */
+    .s-label {
+      font-size: .7rem; font-weight: 700; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: .6rem;
+    }
+    .s-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900; letter-spacing: -.04em; margin-bottom: 3rem;
+      line-height: 1.05;
+    }
+
+    /* ── MENÜ ── */
+    #getraenke {
+      padding: 7rem 3rem;
+      background: var(--paper);
+    }
+    .menu-inner { max-width: 1080px; margin: 0 auto; }
+
+    .menu-block {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border: 1.5px solid rgba(26,23,6,.1);
+      border-radius: 16px; overflow: hidden;
+    }
+    .menu-col {
+      padding: 2.5rem 2.75rem;
+    }
+    .menu-col + .menu-col {
+      border-left: 1.5px solid rgba(26,23,6,.1);
+    }
+    .menu-col-head {
+      font-size: .7rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--caramel);
+      margin-bottom: 1.75rem; padding-bottom: .75rem;
+      border-bottom: 1.5px solid rgba(26,23,6,.09);
+    }
+    .mi {
+      display: flex; justify-content: space-between; align-items: baseline;
+      gap: 1rem; padding: .6rem 0;
+      border-bottom: 1px solid rgba(26,23,6,.06);
+    }
+    .mi:last-of-type { border-bottom: none; }
+    .mi-n { font-size: .9rem; font-weight: 500; }
+    .mi-p { font-size: .875rem; font-weight: 700; color: var(--muted); white-space: nowrap; }
+    .menu-note { margin-top: 1.25rem; font-size: .775rem; color: var(--muted); font-style: italic; line-height: 1.6; }
+
+    .menu-soft {
+      margin-top: 2rem; padding: 2rem 2.75rem;
+      border-top: 1.5px solid rgba(26,23,6,.1);
+      display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+      grid-column: 1 / -1;
+    }
+    /* force soft drinks wrapper inside block */
+    .menu-soft-wrap {
+      grid-column: 1 / -1;
+      padding: 2rem 2.75rem;
+      border-top: 1.5px solid rgba(26,23,6,.1);
+      display: grid; grid-template-columns: repeat(2,1fr); gap: 0 3rem;
+    }
+    .menu-soft-head {
+      grid-column: 1 / -1;
+      font-size: .7rem; font-weight: 800; letter-spacing: .18em;
+      text-transform: uppercase; color: var(--caramel);
+      margin-bottom: 1.25rem; padding-bottom: .6rem;
+      border-bottom: 1.5px solid rgba(26,23,6,.09);
+    }
+    @media (max-width: 720px) {
+      .menu-block { grid-template-columns: 1fr; }
+      .menu-col + .menu-col { border-left: none; border-top: 1.5px solid rgba(26,23,6,.1); }
+      .menu-soft-wrap { grid-template-columns: repeat(2,1fr); }
+    }
+
+    /* ── FILTER ── */
+    #filter { background: var(--ink); color: var(--cream); padding: 7rem 3rem; }
+    .filter-inner { max-width: 900px; margin: 0 auto; }
+    #filter .s-label { color: var(--caramel); }
+    #filter .s-title { color: var(--cream); }
+    .filter-board {
+      border: 1px solid rgba(200,149,108,.2); border-radius: 16px;
+      overflow: hidden;
+    }
+    .filter-board-head {
+      background: rgba(200,149,108,.08);
+      text-align: center; font-size: .7rem; font-weight: 800; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--caramel);
+      padding: 1.1rem;
+      border-bottom: 1px solid rgba(200,149,108,.15);
+    }
+    .filter-entry {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.6rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,.06);
+      transition: background .2s;
+    }
+    .filter-entry:last-child { border-bottom: none; }
+    .filter-entry:hover { background: rgba(200,149,108,.04); }
+    .fe-name { font-size: 1.4rem; font-weight: 900; letter-spacing: -.03em; }
+    .fe-origin { font-size: .85rem; color: rgba(240,237,229,.45); margin-top: .1rem; }
+    .fe-price { font-size: 1.5rem; font-weight: 900; color: var(--caramel); }
+    .filter-footnote { text-align: center; color: rgba(240,237,229,.35); font-size: .8rem; margin-top: 1.5rem; }
+
+    /* ── ÜBER UNS ── */
+    #story {
+      display: grid; grid-template-columns: 1fr 1fr; min-height: 56vh;
+    }
+    .story-img {
+      background: linear-gradient(150deg, #f0e8d8 0%, #c8a070 40%, #5a2e10 80%, #1c0a02 100%);
+      position: relative; overflow: hidden;
+    }
+    .story-img-pill {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px; height: 220px; border-radius: 80px;
+      background: linear-gradient(160deg, #8b5030 0%, #3d1808 60%, #160600 100%);
+      box-shadow: 0 30px 70px rgba(0,0,0,.35);
+    }
+    .story-text {
+      padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center;
+      background: var(--cream);
+    }
+    .story-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1.4rem; font-size: 1rem; }
+    .story-text p strong { color: var(--ink); }
+    @media (max-width: 768px) {
+      #story { grid-template-columns: 1fr; }
+      .story-img { min-height: 240px; }
+      .story-text { padding: 3rem 1.5rem; }
+    }
+
+    /* ── ÖFFNUNGSZEITEN + ADRESSE ── */
+    #besuch { background: var(--paper); padding: 7rem 3rem; }
+    .besuch-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+    .hours-list { margin-top: 1.75rem; list-style: none; }
+    .hours-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .8rem 0; border-bottom: 1px solid rgba(26,23,6,.08); font-size: .9rem;
+    }
+    .hours-list li:last-child { border-bottom: none; }
+    .h-day { color: var(--muted); }
+    .h-time { font-weight: 800; }
+    .address-card {
+      margin-top: 1.75rem;
+      border: 1.5px solid rgba(26,23,6,.1); border-radius: 14px;
+      padding: 1.75rem 2rem;
+    }
+    .address-card strong { font-size: 1.05rem; font-weight: 900; display: block; margin-bottom: .5rem; }
+    .address-card p { color: var(--muted); line-height: 1.75; font-size: .9rem; }
+    .map-placeholder {
+      margin-top: 1.25rem; border-radius: 12px;
+      background: var(--cream-dark);
+      border: 1.5px dashed rgba(26,23,6,.15);
+      min-height: 200px; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: .75rem; padding: 2rem; text-align: center;
+    }
+    .map-placeholder p { font-size: .82rem; color: var(--muted); }
+    .map-btn {
+      background: var(--ink); color: var(--cream); border: none;
+      padding: .6rem 1.4rem; border-radius: 100px;
+      font-size: .85rem; font-weight: 700; cursor: pointer;
+    }
+    @media (max-width: 768px) { .besuch-inner { grid-template-columns: 1fr; } }
+
+    /* ── KONTAKT ── */
+    #kontakt { background: var(--ink); color: var(--cream); padding: 7rem 3rem; }
+    .kontakt-inner { max-width: 560px; margin: 0 auto; }
+    #kontakt .s-label { color: var(--caramel); }
+    #kontakt .s-title { color: var(--cream); }
+    .kform { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+    .kff { display: flex; flex-direction: column; gap: .4rem; }
+    .kff label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(240,237,229,.5); }
+    .kff input, .kff textarea {
+      background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
+      border-radius: 9px; padding: .85rem 1rem; color: var(--cream);
+      font-family: var(--ff); font-size: .9rem; outline: none; transition: border-color .2s;
+    }
+    .kff input:focus, .kff textarea:focus { border-color: var(--caramel); }
+    .kff textarea { min-height: 110px; resize: vertical; }
+    .kcc { display: flex; gap: .75rem; align-items: flex-start; }
+    .kcc input { margin-top: .3rem; flex-shrink: 0; accent-color: var(--caramel); }
+    .kcc label { font-size: .78rem; color: rgba(240,237,229,.45); line-height: 1.55; }
+    .kcc a { color: var(--caramel); }
+    .mailto-btn {
+      display: inline-block;
+      background: var(--caramel); color: var(--ink);
+      padding: 1rem 2.5rem; border-radius: 100px;
+      font-weight: 900; font-size: 1rem; text-decoration: none;
+      transition: opacity .2s; margin-top: .5rem;
+    }
+    .mailto-btn:hover { opacity: .85; }
+    .kontakt-sub {
+      color: rgba(240,237,229,.4); font-size: .85rem; margin-top: 1rem; line-height: 1.6;
+    }
+    .kontakt-sub a { color: var(--caramel); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0c0b08; color: rgba(240,237,229,.35);
+      padding: 1.75rem 2.5rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: center; gap: 1rem; font-size: .8rem;
+    }
+    footer a { color: rgba(240,237,229,.35); text-decoration: none; }
+    footer a:hover { color: var(--cream); }
+    .footer-links { display: flex; gap: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">no worries</a>
+  <ul class="nav-links">
+    <li><a href="#getraenke">Getränke</a></li>
+    <li><a href="#filter">Filter</a></li>
+    <li><a href="#story">Über uns</a></li>
+    <li><a href="#besuch">Besuch</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Specialty Coffee · Flingern · Düsseldorf</p>
+    <h1 class="hero-h1">Kaffee.<br>Ohne<br>Stress.</h1>
+    <p class="hero-sub">
+      Wechselnde Röster aus aller Welt, handgemachter Matcha und ein Ort,
+      an dem man sich einfach wohlfühlt — direkt am Hermannplatz.
+    </p>
+    <a href="#getraenke" class="hero-cta">Zur Karte</a>
+  </div>
+  <div class="hero-right">
+    <div class="hero-ring"></div>
+  </div>
+</section>
+
+<!-- RATING STRIP -->
+<div class="rating-strip">
+  <span><strong>★ 4,9</strong></span>
+  <span class="rs-dot">·</span>
+  <span>177 Google-Bewertungen</span>
+  <span class="rs-dot">·</span>
+  <span>„Bester Kaffee in ganz Düsseldorf"</span>
+  <span class="rs-dot">·</span>
+  <span>NeoTaste-Partner</span>
+</div>
+
+<!-- MENÜ -->
+<section id="getraenke">
+  <div class="menu-inner">
+    <p class="s-label">Was wir machen</p>
+    <h2 class="s-title">Die Karte</h2>
+    <div class="menu-block" id="menu-block"></div>
+  </div>
+</section>
+
+<!-- FILTER COFFEE -->
+<section id="filter">
+  <div class="filter-inner">
+    <p class="s-label">Wechselndes Angebot</p>
+    <h2 class="s-title">Filter Kaffee</h2>
+    <div class="filter-board">
+      <div class="filter-board-head">— Filter —</div>
+      <div id="filter-entries"></div>
+    </div>
+    <p class="filter-footnote" id="filter-footnote"></p>
+  </div>
+</section>
+
+<script>
+(function () {
+  const STORAGE_KEY = 'nw_menu';
+
+  const DEFAULT = {
+    categories: [
+      { id:'hot', name:'Hot', note:'* Filter Coffee: Preis bitte nachfragen\nExtra Shot +0,50',
+        items:[
+          {name:'Espresso',price:'2,50 / 3,00'},{name:'Americano',price:'3,00'},
+          {name:'Batch Brew',price:'2,80'},{name:'Filter Coffee',price:'*'},
+          {name:'Cortado',price:'3,00'},{name:'Cappuccino',price:'3,50 / 4,00'},
+          {name:'Flat White',price:'4,00'},{name:'Latte',price:'3,70'},
+          {name:'Matcha Latte',price:'4,50'},{name:'Chai Latte',price:'4,30'},
+          {name:'Dirty Chai Latte',price:'4,80'},{name:'Chocolate',price:'4,00'},
+          {name:'Tea',price:'3,00'}
+        ]},
+      { id:'cold', name:'Cold', note:'',
+        items:[
+          {name:'Iced Americano',price:'3,00'},{name:'Iced Cappuccino',price:'3,50 / 4,00'},
+          {name:'Iced Flat White',price:'4,00'},{name:'Iced Latte',price:'3,70'},
+          {name:'Iced Matcha Latte',price:'4,50'},{name:'Iced Chai Latte',price:'4,30'},
+          {name:'Iced Dirty Chai Latte',price:'4,80'},{name:'Iced Chocolate',price:'4,00'},
+          {name:'Iced Tea',price:'3,00'}
+        ]},
+      { id:'soft', name:'Soft Drinks', note:'',
+        items:[
+          {name:'Lemonaid 0,33L',price:'3,00'},{name:'Fritz 0,2L',price:'2,80'},
+          {name:'Sparkling Water 0,25L',price:'2,50'},{name:'Charitea 0,33L',price:'3,00'}
+        ]}
+    ],
+    filter: [
+      {roaster:'Sprout', origin:'Rwanda',         price:'5'},
+      {roaster:'Andy',   origin:'Colombia',        price:'7'},
+      {roaster:'Mame',   origin:'Geisha Colombia', price:'8'}
+    ],
+    filterNote: 'Das Angebot rotiert regelmäßig — aktuell verfügbare Röster bitte vor Ort erfragen.'
+  };
+
+  const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || DEFAULT;
+
+  // Render menu categories
+  const block = document.getElementById('menu-block');
+  const mainCats = data.categories.filter(c => c.id !== 'soft' && !c._soft);
+  const softCat  = data.categories.find(c => c.id === 'soft' || c._soft);
+
+  data.categories.forEach(cat => {
+    if (cat.id === 'soft' || cat._soft) return; // rendered separately
+    const col = document.createElement('div');
+    col.className = 'menu-col';
+    col.innerHTML = `<div class="menu-col-head">${esc(cat.name)}</div>`
+      + cat.items.map(it =>
+          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${esc(it.price)}</span></div>`
+        ).join('')
+      + (cat.note ? `<p class="menu-note">${esc(cat.note).replace(/\n/g,'<br>')}</p>` : '');
+    block.appendChild(col);
+  });
+
+  // Extra categories beyond the 2-col layout get their own soft-wrap row
+  const extraCats = data.categories.filter(c => c.id === 'soft' || c._soft
+    || (c.id !== 'hot' && c.id !== 'cold' && !mainCats.slice(0,2).includes(c)));
+
+  data.categories.forEach((cat, i) => {
+    if (i < 2) return;
+    const wrap = document.createElement('div');
+    wrap.className = 'menu-soft-wrap';
+    wrap.innerHTML = `<div class="menu-soft-head">${esc(cat.name)}</div>`
+      + cat.items.map(it =>
+          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${esc(it.price)}</span></div>`
+        ).join('');
+    block.appendChild(wrap);
+  });
+
+  // Render filter
+  const fe = document.getElementById('filter-entries');
+  fe.innerHTML = data.filter.map(f => `
+    <div class="filter-entry">
+      <div><div class="fe-name">${esc(f.roaster)}</div><div class="fe-origin">${esc(f.origin)}</div></div>
+      <div class="fe-price">${esc(f.price)} €</div>
+    </div>`).join('');
+  document.getElementById('filter-footnote').textContent = data.filterNote || '';
+
+  function esc(s) {
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+})();
+</script>
+
+<!-- ÜBER UNS -->
+<section id="story">
+  <div class="story-img">
+    <div class="story-img-pill"></div>
+  </div>
+  <div class="story-text">
+    <p class="s-label">Wer wir sind</p>
+    <h2 class="s-title">No Worries.</h2>
+    <p>
+      Mitten in Flingern, direkt am Hermannplatz: ein kleines Café mit großer Leidenschaft
+      für <strong>Specialty Coffee</strong>. Wir arbeiten mit wechselnden internationalen Röstereien
+      und bereiten jeden Kaffee mit Sorgfalt zu.
+    </p>
+    <p>
+      Dazu: handgemachter <strong>Matcha</strong>, faire Preise, eigene Hafermilch und ein Team,
+      das sich ehrlich freut, wenn du reinkommst.
+    </p>
+    <p>
+      Karte zahlen geht natürlich. Hunde willkommen.
+    </p>
+  </div>
+</section>
+
+<!-- ÖFFNUNGSZEITEN & ANFAHRT -->
+<section id="besuch">
+  <div class="besuch-inner">
+    <div>
+      <p class="s-label">Wann wir da sind</p>
+      <h2 class="s-title">Öffnungszeiten</h2>
+      <ul class="hours-list">
+        <li><span class="h-day">Mo – Mi</span><span class="h-time">08:30 – 17:00</span></li>
+        <li><span class="h-day">Do</span><span class="h-time">08:30 – 17:00</span></li>
+        <li><span class="h-day">Fr</span><span class="h-time">08:30 – 17:00</span></li>
+        <li><span class="h-day">Sa</span><span class="h-time">09:30 – 17:00</span></li>
+        <li><span class="h-day">So</span><span class="h-time">11:00 – 16:00</span></li>
+      </ul>
+    </div>
+    <div>
+      <p class="s-label">Wo wir sind</p>
+      <h2 class="s-title">Anfahrt</h2>
+      <div class="address-card">
+        <strong>No Worries Coffee</strong>
+        <p>Lindenstraße 142<br>40233 Düsseldorf<br>Flingern · am Hermannplatz</p>
+      </div>
+      <div class="map-placeholder">
+        <span style="font-size:1.5rem">📍</span>
+        <p>Karte wird nach Ihrer Datenschutz-Zustimmung geladen.</p>
+        <button class="map-btn">Karte laden</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section id="kontakt">
+  <div class="kontakt-inner">
+    <p class="s-label">Schreib uns</p>
+    <h2 class="s-title">Kontakt</h2>
+    <a href="mailto:{{EMAIL_ADRESSE}}?subject=Anfrage%20No%20Worries%20Coffee" class="mailto-btn">
+      E-Mail schreiben
+    </a>
+    <p class="kontakt-sub">
+      Öffnet dein Mail-Programm mit vorausgefüllter Empfängeradresse.<br>
+      Mehr Infos zum Datenschutz: <a href="datenschutz.html">Datenschutzerklärung</a>
+    </p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 No Worries Coffee, Düsseldorf</span>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+  </div>
+</footer>
+
+</body>
+</html>

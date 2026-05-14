@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – No Worries Coffee</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --ink: #1A1706; --cream: #F0EDE5; --paper: #FDFAF5;
+      --caramel: #C8956C; --muted: #7A7060; --border: rgba(26,23,6,.12);
+      --red: #C0392B; --green: #27735A;
+      --ff: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    body { font-family: var(--ff); background: var(--cream); color: var(--ink); font-size: 15px; line-height: 1.5; min-height: 100vh; }
+
+    /* ── AUTH SCREENS ── */
+    .auth-wrap {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      padding: 2rem;
+    }
+    .auth-card {
+      background: var(--paper); border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 3rem 2.5rem; width: 100%; max-width: 400px;
+      box-shadow: 0 8px 40px rgba(26,23,6,.08);
+    }
+    .auth-logo { font-size: 1.5rem; font-weight: 900; letter-spacing: -.04em; margin-bottom: .4rem; }
+    .auth-sub { font-size: .82rem; color: var(--muted); margin-bottom: 2rem; }
+    .auth-label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .4rem; }
+    .auth-input {
+      width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+      padding: .85rem 1rem; font-size: .95rem; font-family: var(--ff);
+      background: var(--cream); color: var(--ink); outline: none; margin-bottom: 1rem;
+      transition: border-color .2s;
+    }
+    .auth-input:focus { border-color: var(--caramel); }
+    .auth-btn {
+      width: 100%; background: var(--ink); color: var(--cream);
+      border: none; border-radius: 100px; padding: .9rem;
+      font-weight: 800; font-size: .95rem; cursor: pointer; transition: opacity .2s;
+    }
+    .auth-btn:hover { opacity: .85; }
+    .auth-error { background: #fde8e8; border: 1px solid #f5c6c6; border-radius: 8px; padding: .6rem 1rem; font-size: .82rem; color: var(--red); margin-bottom: 1rem; display: none; }
+    .auth-hint { font-size: .78rem; color: var(--muted); text-align: center; margin-top: 1.25rem; }
+    .auth-hint a { color: var(--caramel); cursor: pointer; text-decoration: underline; }
+
+    /* ── DASHBOARD ── */
+    #screen-dashboard { display: none; }
+    .admin-header {
+      position: sticky; top: 0; z-index: 50;
+      background: var(--ink); color: var(--cream);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2rem; height: 56px;
+    }
+    .admin-header-logo { font-size: 1.1rem; font-weight: 900; letter-spacing: -.04em; }
+    .admin-header-logo span { color: var(--caramel); font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-left: .75rem; opacity: .7; }
+    .header-actions { display: flex; gap: .75rem; align-items: center; }
+    .preview-link {
+      font-size: .78rem; font-weight: 600; color: rgba(240,237,229,.6);
+      text-decoration: none; letter-spacing: .04em;
+    }
+    .preview-link:hover { color: var(--cream); }
+    .logout-btn {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      color: var(--cream); border-radius: 100px; padding: .4rem 1rem;
+      font-size: .78rem; font-weight: 700; cursor: pointer; transition: background .2s;
+    }
+    .logout-btn:hover { background: rgba(255,255,255,.18); }
+
+    .admin-body { max-width: 900px; margin: 0 auto; padding: 2.5rem 2rem 5rem; }
+
+    /* save bar */
+    .save-bar {
+      position: fixed; bottom: 0; left: 0; right: 0; z-index: 50;
+      background: var(--paper); border-top: 1.5px solid var(--border);
+      padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between;
+      box-shadow: 0 -4px 20px rgba(26,23,6,.08);
+    }
+    .save-bar-info { font-size: .82rem; color: var(--muted); }
+    .save-bar-info strong { color: var(--ink); }
+    .save-btn {
+      background: var(--caramel); color: var(--ink); border: none;
+      border-radius: 100px; padding: .7rem 2rem;
+      font-weight: 900; font-size: .9rem; cursor: pointer; transition: opacity .2s;
+    }
+    .save-btn:hover { opacity: .85; }
+    .saved-toast {
+      position: fixed; top: 70px; right: 1.5rem; z-index: 100;
+      background: var(--green); color: #fff;
+      padding: .6rem 1.2rem; border-radius: 100px;
+      font-size: .82rem; font-weight: 700;
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+    }
+    .saved-toast.show { opacity: 1; }
+
+    /* ── SECTIONS ── */
+    .admin-section { margin-bottom: 3rem; }
+    .admin-section-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 1.5rem;
+    }
+    .admin-section-title { font-size: 1.25rem; font-weight: 900; letter-spacing: -.03em; }
+    .add-btn {
+      background: var(--ink); color: var(--cream); border: none;
+      border-radius: 100px; padding: .5rem 1.1rem;
+      font-size: .78rem; font-weight: 700; cursor: pointer; transition: opacity .2s;
+      white-space: nowrap;
+    }
+    .add-btn:hover { opacity: .82; }
+    .add-btn.secondary {
+      background: transparent; color: var(--ink);
+      border: 1.5px solid var(--border);
+    }
+    .add-btn.secondary:hover { background: var(--cream-dark, #E6E2D8); }
+
+    /* category block */
+    .cat-block {
+      background: var(--paper); border: 1.5px solid var(--border);
+      border-radius: 16px; overflow: hidden; margin-bottom: 1.25rem;
+    }
+    .cat-header {
+      display: flex; align-items: center; gap: .75rem;
+      padding: 1rem 1.25rem; background: rgba(26,23,6,.03);
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-name-input {
+      flex: 1; font-size: 1rem; font-weight: 800; font-family: var(--ff);
+      background: transparent; border: none; outline: none; color: var(--ink);
+      letter-spacing: -.02em;
+    }
+    .cat-name-input::placeholder { color: var(--muted); }
+    .icon-btn {
+      background: none; border: none; cursor: pointer; padding: .25rem .4rem;
+      border-radius: 6px; font-size: .9rem; color: var(--muted); transition: background .15s;
+      line-height: 1;
+    }
+    .icon-btn:hover { background: rgba(26,23,6,.07); }
+    .icon-btn.danger:hover { background: #fde8e8; color: var(--red); }
+
+    /* items */
+    .items-list { padding: .5rem 1.25rem; }
+    .item-row {
+      display: flex; align-items: center; gap: .6rem;
+      padding: .55rem 0; border-bottom: 1px solid rgba(26,23,6,.05);
+    }
+    .item-row:last-child { border-bottom: none; }
+    .drag-handle { color: var(--muted); font-size: .9rem; cursor: grab; flex-shrink: 0; opacity: .4; }
+    .item-name-input {
+      flex: 1; font-family: var(--ff); font-size: .9rem; font-weight: 500;
+      border: 1.5px solid transparent; border-radius: 7px;
+      padding: .35rem .6rem; background: transparent; color: var(--ink); outline: none;
+      transition: border-color .15s, background .15s;
+    }
+    .item-name-input:focus { border-color: var(--caramel); background: var(--cream); }
+    .item-price-input {
+      width: 110px; font-family: var(--ff); font-size: .875rem; font-weight: 700;
+      border: 1.5px solid transparent; border-radius: 7px;
+      padding: .35rem .6rem; background: transparent; color: var(--muted); outline: none;
+      text-align: right; transition: border-color .15s, background .15s;
+    }
+    .item-price-input:focus { border-color: var(--caramel); background: var(--cream); color: var(--ink); }
+
+    .cat-footer {
+      padding: .75rem 1.25rem;
+      border-top: 1px solid rgba(26,23,6,.05);
+    }
+    .cat-note-input {
+      width: 100%; font-family: var(--ff); font-size: .78rem; color: var(--muted);
+      border: none; background: transparent; outline: none; resize: none;
+      font-style: italic; line-height: 1.5;
+    }
+    .cat-note-input::placeholder { color: rgba(122,112,96,.5); }
+
+    /* ── FILTER SECTION ── */
+    .filter-entry-row {
+      background: var(--paper); border: 1.5px solid var(--border);
+      border-radius: 12px; padding: 1rem 1.25rem;
+      display: grid; grid-template-columns: 1fr 1fr 90px 36px;
+      gap: .6rem; align-items: center; margin-bottom: .75rem;
+    }
+    .fe-input {
+      font-family: var(--ff); font-size: .9rem; border: 1.5px solid transparent;
+      border-radius: 7px; padding: .4rem .65rem; background: var(--cream);
+      color: var(--ink); outline: none; width: 100%; transition: border-color .2s;
+    }
+    .fe-input:focus { border-color: var(--caramel); }
+    .fe-price-input {
+      font-family: var(--ff); font-size: .9rem; font-weight: 700;
+      border: 1.5px solid transparent; border-radius: 7px;
+      padding: .4rem .65rem; background: var(--cream); color: var(--caramel);
+      outline: none; width: 100%; transition: border-color .2s; text-align: right;
+    }
+    .fe-price-input:focus { border-color: var(--caramel); }
+    .fe-labels {
+      display: grid; grid-template-columns: 1fr 1fr 90px 36px;
+      gap: .6rem; padding: 0 .1rem; margin-bottom: .4rem;
+    }
+    .fe-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .filter-note-wrap { margin-top: 1rem; }
+    .filter-note-label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; }
+    .filter-note-ta {
+      width: 100%; font-family: var(--ff); font-size: .85rem; color: var(--muted);
+      border: 1.5px solid var(--border); border-radius: 10px;
+      padding: .75rem 1rem; background: var(--paper); outline: none;
+      resize: vertical; min-height: 60px; transition: border-color .2s;
+    }
+    .filter-note-ta:focus { border-color: var(--caramel); }
+
+    /* ── PASSWORD CHANGE ── */
+    .pw-section {
+      background: var(--paper); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 1.5rem; margin-bottom: 3rem;
+    }
+    .pw-row { display: flex; gap: .75rem; align-items: flex-end; flex-wrap: wrap; }
+    .pw-field { display: flex; flex-direction: column; gap: .35rem; flex: 1; min-width: 140px; }
+    .pw-field label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .pw-field input {
+      font-family: var(--ff); font-size: .9rem; border: 1.5px solid var(--border);
+      border-radius: 9px; padding: .65rem .9rem; background: var(--cream);
+      color: var(--ink); outline: none; transition: border-color .2s;
+    }
+    .pw-field input:focus { border-color: var(--caramel); }
+    .pw-msg { font-size: .78rem; margin-top: .75rem; }
+    .pw-msg.ok { color: var(--green); }
+    .pw-msg.err { color: var(--red); }
+
+    @media (max-width: 600px) {
+      .filter-entry-row { grid-template-columns: 1fr 1fr; }
+      .filter-entry-row .icon-btn { grid-column: 2; justify-self: end; }
+      .fe-labels { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══ SETUP ══ -->
+<div id="screen-setup" class="auth-wrap">
+  <div class="auth-card">
+    <div class="auth-logo">no worries</div>
+    <div class="auth-sub">Admin-Bereich einrichten — einmalig</div>
+    <div class="auth-error" id="setup-error"></div>
+    <label class="auth-label">Passwort wählen</label>
+    <input class="auth-input" type="password" id="setup-pw1" placeholder="Neues Passwort" autocomplete="new-password">
+    <label class="auth-label">Passwort wiederholen</label>
+    <input class="auth-input" type="password" id="setup-pw2" placeholder="Wiederholen" autocomplete="new-password">
+    <button class="auth-btn" onclick="setupPassword()">Einrichten</button>
+    <p class="auth-hint">Dieses Passwort schützt den Admin-Bereich.</p>
+  </div>
+</div>
+
+<!-- ══ LOGIN ══ -->
+<div id="screen-login" class="auth-wrap" style="display:none">
+  <div class="auth-card">
+    <div class="auth-logo">no worries</div>
+    <div class="auth-sub">Admin-Login</div>
+    <div class="auth-error" id="login-error"></div>
+    <label class="auth-label">Passwort</label>
+    <input class="auth-input" type="password" id="login-pw" placeholder="Passwort" autocomplete="current-password">
+    <button class="auth-btn" onclick="login()">Einloggen</button>
+    <p class="auth-hint"><a onclick="resetAdmin()">Passwort vergessen?</a></p>
+  </div>
+</div>
+
+<!-- ══ DASHBOARD ══ -->
+<div id="screen-dashboard">
+  <header class="admin-header">
+    <div>
+      <span class="admin-header-logo">no worries <span>Admin</span></span>
+    </div>
+    <div class="header-actions">
+      <a href="variante-1.html" target="_blank" class="preview-link">↗ Vorschau</a>
+      <button class="logout-btn" onclick="logout()">Abmelden</button>
+    </div>
+  </header>
+
+  <div class="admin-body">
+
+    <!-- MENÜ KATEGORIEN -->
+    <div class="admin-section">
+      <div class="admin-section-head">
+        <h2 class="admin-section-title">Getränkekarte</h2>
+        <button class="add-btn" onclick="addCategory()">+ Kategorie</button>
+      </div>
+      <div id="categories-container"></div>
+    </div>
+
+    <!-- FILTER ANGEBOTE -->
+    <div class="admin-section">
+      <div class="admin-section-head">
+        <h2 class="admin-section-title">Filter Kaffee Angebote</h2>
+        <button class="add-btn" onclick="addFilterEntry()">+ Angebot</button>
+      </div>
+      <div class="fe-labels">
+        <span class="fe-label">Rösterei</span>
+        <span class="fe-label">Herkunft</span>
+        <span class="fe-label">Preis</span>
+        <span></span>
+      </div>
+      <div id="filter-container"></div>
+      <div class="filter-note-wrap">
+        <div class="filter-note-label">Hinweis unter dem Angebot</div>
+        <textarea class="filter-note-ta" id="filter-note-ta" rows="2"></textarea>
+      </div>
+    </div>
+
+    <!-- PASSWORT ÄNDERN -->
+    <div class="admin-section">
+      <div class="admin-section-head">
+        <h2 class="admin-section-title">Passwort ändern</h2>
+      </div>
+      <div class="pw-section">
+        <div class="pw-row">
+          <div class="pw-field">
+            <label>Neues Passwort</label>
+            <input type="password" id="pw-new1" placeholder="Neues Passwort" autocomplete="new-password">
+          </div>
+          <div class="pw-field">
+            <label>Wiederholen</label>
+            <input type="password" id="pw-new2" placeholder="Wiederholen" autocomplete="new-password">
+          </div>
+          <button class="add-btn" onclick="changePassword()">Ändern</button>
+        </div>
+        <div class="pw-msg" id="pw-msg"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- SAVE BAR -->
+  <div class="save-bar">
+    <div class="save-bar-info">Änderungen werden <strong>lokal gespeichert</strong> und sofort auf der Website angezeigt.</div>
+    <button class="save-btn" onclick="saveData()">Speichern</button>
+  </div>
+</div>
+
+<div class="saved-toast" id="saved-toast">✓ Gespeichert</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────
+
+const STORAGE_KEY = 'nw_menu';
+const AUTH_KEY    = 'nw_admin_hash';
+
+const DEFAULT_DATA = {
+  categories: [
+    {
+      id: 'hot', name: 'Hot',
+      note: '* Filter Coffee: Preis bitte nachfragen\nExtra Shot +0,50',
+      items: [
+        { id: 'i1',  name: 'Espresso',        price: '2,50 / 3,00' },
+        { id: 'i2',  name: 'Americano',        price: '3,00' },
+        { id: 'i3',  name: 'Batch Brew',       price: '2,80' },
+        { id: 'i4',  name: 'Filter Coffee',    price: '*' },
+        { id: 'i5',  name: 'Cortado',          price: '3,00' },
+        { id: 'i6',  name: 'Cappuccino',       price: '3,50 / 4,00' },
+        { id: 'i7',  name: 'Flat White',       price: '4,00' },
+        { id: 'i8',  name: 'Latte',            price: '3,70' },
+        { id: 'i9',  name: 'Matcha Latte',     price: '4,50' },
+        { id: 'i10', name: 'Chai Latte',       price: '4,30' },
+        { id: 'i11', name: 'Dirty Chai Latte', price: '4,80' },
+        { id: 'i12', name: 'Chocolate',        price: '4,00' },
+        { id: 'i13', name: 'Tea',              price: '3,00' },
+      ]
+    },
+    {
+      id: 'cold', name: 'Cold', note: '',
+      items: [
+        { id: 'c1',  name: 'Iced Americano',        price: '3,00' },
+        { id: 'c2',  name: 'Iced Cappuccino',        price: '3,50 / 4,00' },
+        { id: 'c3',  name: 'Iced Flat White',        price: '4,00' },
+        { id: 'c4',  name: 'Iced Latte',             price: '3,70' },
+        { id: 'c5',  name: 'Iced Matcha Latte',      price: '4,50' },
+        { id: 'c6',  name: 'Iced Chai Latte',        price: '4,30' },
+        { id: 'c7',  name: 'Iced Dirty Chai Latte',  price: '4,80' },
+        { id: 'c8',  name: 'Iced Chocolate',         price: '4,00' },
+        { id: 'c9',  name: 'Iced Tea',               price: '3,00' },
+      ]
+    },
+    {
+      id: 'soft', name: 'Soft Drinks', note: '',
+      items: [
+        { id: 's1', name: 'Lemonaid 0,33L',      price: '3,00' },
+        { id: 's2', name: 'Fritz 0,2L',           price: '2,80' },
+        { id: 's3', name: 'Sparkling Water 0,25L',price: '2,50' },
+        { id: 's4', name: 'Charitea 0,33L',       price: '3,00' },
+      ]
+    }
+  ],
+  filter: [
+    { id: 'f1', roaster: 'Sprout',  origin: 'Rwanda',          price: '5' },
+    { id: 'f2', roaster: 'Andy',    origin: 'Colombia',         price: '7' },
+    { id: 'f3', roaster: 'Mame',    origin: 'Geisha Colombia',  price: '8' },
+  ],
+  filterNote: 'Das Angebot rotiert regelmäßig — aktuell verfügbare Röster bitte vor Ort erfragen.'
+};
+
+let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stringify(DEFAULT_DATA));
+
+// ── AUTH ──────────────────────────────────────────────────────────────────
+
+async function sha256(str) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+
+function uid() { return Math.random().toString(36).slice(2, 9); }
+
+async function setupPassword() {
+  const p1 = document.getElementById('setup-pw1').value;
+  const p2 = document.getElementById('setup-pw2').value;
+  const err = document.getElementById('setup-error');
+  if (p1.length < 6) { showErr(err, 'Mindestens 6 Zeichen.'); return; }
+  if (p1 !== p2)      { showErr(err, 'Passwörter stimmen nicht überein.'); return; }
+  localStorage.setItem(AUTH_KEY, await sha256(p1));
+  showDashboard();
+}
+
+async function login() {
+  const pw  = document.getElementById('login-pw').value;
+  const err = document.getElementById('login-error');
+  const hash = await sha256(pw);
+  if (hash === localStorage.getItem(AUTH_KEY)) {
+    showDashboard();
+  } else {
+    showErr(err, 'Falsches Passwort.');
+    document.getElementById('login-pw').value = '';
+  }
+}
+
+async function changePassword() {
+  const p1  = document.getElementById('pw-new1').value;
+  const p2  = document.getElementById('pw-new2').value;
+  const msg = document.getElementById('pw-msg');
+  if (p1.length < 6) { msg.className='pw-msg err'; msg.textContent='Mindestens 6 Zeichen.'; return; }
+  if (p1 !== p2)      { msg.className='pw-msg err'; msg.textContent='Passwörter stimmen nicht überein.'; return; }
+  localStorage.setItem(AUTH_KEY, await sha256(p1));
+  document.getElementById('pw-new1').value = '';
+  document.getElementById('pw-new2').value = '';
+  msg.className='pw-msg ok'; msg.textContent='✓ Passwort geändert.';
+  setTimeout(() => msg.textContent='', 3000);
+}
+
+function logout() {
+  hide('screen-dashboard');
+  show('screen-login');
+  document.getElementById('login-pw').value = '';
+}
+
+function resetAdmin() {
+  if (confirm('Admin-Bereich zurücksetzen? Das löscht das Passwort und alle gespeicherten Menü-Daten.')) {
+    localStorage.removeItem(AUTH_KEY);
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  }
+}
+
+function showErr(el, msg) { el.style.display='block'; el.textContent=msg; }
+function show(id) { document.getElementById(id).style.display=''; }
+function hide(id) { document.getElementById(id).style.display='none'; }
+
+function showDashboard() {
+  hide('screen-setup'); hide('screen-login');
+  document.getElementById('screen-dashboard').style.display='block';
+  renderAll();
+}
+
+function init() {
+  const hash = localStorage.getItem(AUTH_KEY);
+  if (!hash)  { show('screen-setup'); }
+  else        { show('screen-login'); }
+}
+
+// ── RENDER ────────────────────────────────────────────────────────────────
+
+function renderAll() {
+  renderCategories();
+  renderFilter();
+}
+
+function renderCategories() {
+  const container = document.getElementById('categories-container');
+  container.innerHTML = '';
+  data.categories.forEach((cat, ci) => {
+    const block = document.createElement('div');
+    block.className = 'cat-block';
+    block.dataset.ci = ci;
+
+    block.innerHTML = `
+      <div class="cat-header">
+        <span class="drag-handle" title="Sortieren">⠿</span>
+        <input class="cat-name-input" value="${esc(cat.name)}" placeholder="Kategoriename"
+          oninput="data.categories[${ci}].name=this.value">
+        <button class="icon-btn danger" title="Kategorie löschen" onclick="deleteCategory(${ci})">🗑</button>
+      </div>
+      <div class="items-list" id="items-${ci}">
+        ${cat.items.map((item,ii) => itemRow(ci, ii, item)).join('')}
+      </div>
+      <div class="cat-footer">
+        <button class="add-btn secondary" style="margin-bottom:.6rem;font-size:.76rem;" onclick="addItem(${ci})">+ Getränk hinzufügen</button>
+        <textarea class="cat-note-input" rows="2" placeholder="Hinweis (z.B. * Preis variiert …)"
+          oninput="data.categories[${ci}].note=this.value">${esc(cat.note||'')}</textarea>
+      </div>`;
+    container.appendChild(block);
+  });
+}
+
+function itemRow(ci, ii, item) {
+  return `
+    <div class="item-row" data-ii="${ii}">
+      <span class="drag-handle">⠿</span>
+      <input class="item-name-input" value="${esc(item.name)}" placeholder="Getränkname"
+        oninput="data.categories[${ci}].items[${ii}].name=this.value">
+      <input class="item-price-input" value="${esc(item.price)}" placeholder="Preis"
+        oninput="data.categories[${ci}].items[${ii}].price=this.value">
+      <button class="icon-btn danger" title="Löschen" onclick="deleteItem(${ci},${ii})">✕</button>
+    </div>`;
+}
+
+function renderFilter() {
+  const container = document.getElementById('filter-container');
+  container.innerHTML = data.filter.map((f, fi) => `
+    <div class="filter-entry-row">
+      <input class="fe-input" value="${esc(f.roaster)}" placeholder="Rösterei"
+        oninput="data.filter[${fi}].roaster=this.value">
+      <input class="fe-input" value="${esc(f.origin)}" placeholder="Herkunft / Sorte"
+        oninput="data.filter[${fi}].origin=this.value">
+      <input class="fe-price-input" value="${esc(f.price)}" placeholder="Preis"
+        oninput="data.filter[${fi}].price=this.value">
+      <button class="icon-btn danger" onclick="deleteFilter(${fi})">✕</button>
+    </div>`).join('');
+  document.getElementById('filter-note-ta').value = data.filterNote || '';
+}
+
+// ── MUTATIONS ─────────────────────────────────────────────────────────────
+
+function addCategory() {
+  data.categories.push({ id: uid(), name: 'Neue Kategorie', note: '', items: [] });
+  renderCategories();
+}
+
+function deleteCategory(ci) {
+  if (!confirm(`Kategorie „${data.categories[ci].name}" löschen?`)) return;
+  data.categories.splice(ci, 1);
+  renderCategories();
+}
+
+function addItem(ci) {
+  data.categories[ci].items.push({ id: uid(), name: '', price: '' });
+  renderCategories();
+  // focus last name input in that category
+  const inputs = document.querySelectorAll(`#items-${ci} .item-name-input`);
+  if (inputs.length) inputs[inputs.length-1].focus();
+}
+
+function deleteItem(ci, ii) {
+  data.categories[ci].items.splice(ii, 1);
+  renderCategories();
+}
+
+function addFilterEntry() {
+  data.filter.push({ id: uid(), roaster: '', origin: '', price: '' });
+  renderFilter();
+}
+
+function deleteFilter(fi) {
+  data.filter.splice(fi, 1);
+  renderFilter();
+}
+
+// ── SAVE ─────────────────────────────────────────────────────────────────
+
+function saveData() {
+  data.filterNote = document.getElementById('filter-note-ta').value;
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  const toast = document.getElementById('saved-toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+// Enter key on login
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    if (document.getElementById('screen-login').style.display !== 'none') login();
+    if (document.getElementById('screen-setup').style.display !== 'none') setupPassword();
+  }
+});
+
+function esc(str) {
+  return String(str||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+}
+
+// ── BOOT ─────────────────────────────────────────────────────────────────
+init();
+</script>
+</body>
+</html>
