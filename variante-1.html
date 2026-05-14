@@ -90,8 +90,17 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem; height: 56px;
     }
-    .nav-logo { text-decoration: none; display: flex; align-items: center; }
-    .nav-logo img { height: 44px; width: auto; display: block; }
+    .nav-logo {
+      text-decoration: none;
+      display: block;
+      width: 220px; height: 46px;
+      overflow: hidden;
+    }
+    .nav-logo img {
+      width: 220px; height: auto; /* square → 220×220 */
+      display: block;
+      margin-top: -82px; /* shift up so the text strip is centered in 46px window */
+    }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       text-decoration: none; color: var(--muted);
@@ -385,7 +394,9 @@
   transition:opacity .4s;
 ">
   <div style="text-align:center;padding:2rem;max-width:380px;width:100%;">
-    <img src="logo.png" alt="No Worries Coffee" style="height:36px;width:auto;margin-bottom:.75rem;">
+    <div style="width:260px;height:54px;overflow:hidden;margin:0 auto .75rem;">
+      <img src="logo.png" alt="No Worries Coffee" style="width:260px;height:auto;display:block;margin-top:-97px;">
+    </div>
     <div style="font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;margin-bottom:2.5rem;">Website-Demo</div>
     <input id="demo-input" type="text" placeholder="Demo-Code eingeben"
       style="width:100%;border:1.5px solid rgba(26,23,6,.15);border-radius:10px;
