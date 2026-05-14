@@ -398,6 +398,8 @@ let data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || JSON.parse(JSON.stri
 
 // ── AUTH ──────────────────────────────────────────────────────────────────
 
+const FIXED_HASH = '974b6dc7172993875bcd8dd7aad03cc5f0284f2fb6fbc6d0d38b3318666c19d4';
+
 async function sha256(str) {
   const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
   return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
@@ -465,9 +467,10 @@ function showDashboard() {
 }
 
 function init() {
-  const hash = localStorage.getItem(AUTH_KEY);
-  if (!hash)  { show('screen-setup'); }
-  else        { show('screen-login'); }
+  if (!localStorage.getItem(AUTH_KEY)) {
+    localStorage.setItem(AUTH_KEY, FIXED_HASH);
+  }
+  show('screen-login');
 }
 
 // ── RENDER ────────────────────────────────────────────────────────────────
