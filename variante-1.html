@@ -90,10 +90,8 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem; height: 56px;
     }
-    .nav-logo {
-      font-size: 1.25rem; font-weight: 900; letter-spacing: -.04em;
-      text-decoration: none; color: var(--ink);
-    }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; }
+    .nav-logo img { height: 28px; width: auto; display: block; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
       text-decoration: none; color: var(--muted);
@@ -387,7 +385,7 @@
   transition:opacity .4s;
 ">
   <div style="text-align:center;padding:2rem;max-width:380px;width:100%;">
-    <div style="font-size:1.5rem;font-weight:900;letter-spacing:-.04em;margin-bottom:.35rem;">no worries</div>
+    <img src="logo.jpg" alt="No Worries Coffee" style="height:36px;width:auto;margin-bottom:.75rem;">
     <div style="font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;margin-bottom:2.5rem;">Website-Demo</div>
     <input id="demo-input" type="text" placeholder="Demo-Code eingeben"
       style="width:100%;border:1.5px solid rgba(26,23,6,.15);border-radius:10px;
@@ -444,7 +442,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">no worries</a>
+  <a href="#" class="nav-logo"><img src="logo.jpg" alt="No Worries Coffee"></a>
   <ul class="nav-links">
     <li><a href="#getraenke">Getränke</a></li>
     <li><a href="#filter">Filter</a></li>
