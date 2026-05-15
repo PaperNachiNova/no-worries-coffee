@@ -12,6 +12,7 @@
   <link rel="alternate" hreflang="de" href="https://no-worries-coffee-demo.vercel.app/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
   <link rel="preload" as="image" href="logo.webp" type="image/webp">
+  <link rel="preload" as="image" href="hero.webp" type="image/webp">
 
   <!-- ── OPEN GRAPH (Social Sharing) ── -->
   <meta property="og:type"        content="website">
@@ -148,28 +149,7 @@
     .hero-cta:hover { opacity: .8; }
     .hero-right {
       position: relative; overflow: hidden;
-      background: linear-gradient(160deg, #e8dfc8 0%, #c4a070 35%, #6b3a1f 70%, #2c1008 100%);
-    }
-    .hero-ring {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 340px; height: 340px;
-      border-radius: 28%; /* squircle fallback */
-      clip-path: url(#squircle);
-      background: radial-gradient(circle at 38% 35%,
-        #fff4e8 0%, #d4956a 22%, #8b4010 55%, #2c1008 80%, #0f0400 100%);
-      filter:
-        drop-shadow(0 0 18px rgba(200,149,108,.15))
-        drop-shadow(0 0 36px rgba(200,149,108,.08))
-        drop-shadow(0 40px 80px rgba(10,4,0,.55));
-    }
-    .hero-ring::before {
-      content: '';
-      position: absolute; top: 18%; left: 22%;
-      width: 56%; height: 22%; border-radius: 50%;
-      background: rgba(255,244,232,.18);
-      transform: rotate(-15deg);
-      filter: blur(6px);
+      background: url('hero.webp') center top / cover no-repeat;
     }
     @media (max-width: 768px) {
       #hero { grid-template-columns: 1fr; }
@@ -310,16 +290,8 @@
       content-visibility: auto; contain-intrinsic-size: 0 500px;
     }
     .story-img {
-      background: linear-gradient(150deg, #f0e8d8 0%, #c8a070 40%, #5a2e10 80%, #1c0a02 100%);
+      background: url('story.webp') center center / cover no-repeat;
       position: relative; overflow: hidden;
-    }
-    .story-img-pill {
-      position: absolute; top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 160px; height: 220px;
-      border-radius: 80px;
-      background: linear-gradient(160deg, #8b5030 0%, #3d1808 60%, #160600 100%);
-      box-shadow: 0 30px 70px rgba(0,0,0,.35);
     }
     .story-text {
       padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center;
@@ -585,9 +557,7 @@
     </p>
     <a href="#getraenke" class="hero-cta">Zur Karte</a>
   </div>
-  <div class="hero-right">
-    <div class="hero-ring"></div>
-  </div>
+  <div class="hero-right"></div>
 </section>
 
 <!-- RATING STRIP -->
@@ -720,9 +690,7 @@
 
 <!-- ÜBER UNS -->
 <section id="story">
-  <div class="story-img">
-    <div class="story-img-pill"></div>
-  </div>
+  <div class="story-img"></div>
   <div class="story-text">
     <p class="s-label">Wer wir sind</p>
     <h2 class="s-title">No Worries.</h2>
