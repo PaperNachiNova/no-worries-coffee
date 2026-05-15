@@ -350,6 +350,14 @@
       padding: .6rem 1.4rem; border-radius: 100px;
       font-size: .85rem; font-weight: 700; cursor: pointer;
     }
+    .info-chips {
+      display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.25rem;
+    }
+    .info-chip {
+      background: var(--cream); border: 1.5px solid rgba(26,23,6,.12);
+      border-radius: 100px; padding: .35rem .85rem;
+      font-size: .78rem; font-weight: 600; color: var(--ink);
+    }
     @media (max-width: 768px) { .besuch-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* ── KONTAKT ── */
@@ -724,9 +732,6 @@
       Dazu handgemachter <strong>Matcha</strong>, eigene Hafermilch
       und faire Preise — ein Laden, in dem du bleiben kannst so lange du willst.
     </p>
-    <p style="color:var(--ink);font-weight:600;">
-      Kartenzahlung selbstverständlich. Hunde herzlich willkommen.
-    </p>
   </div>
 </section>
 
@@ -766,6 +771,11 @@
         <span style="font-size:1.5rem">📍</span>
         <p>Karte wird nach deiner Datenschutz-Zustimmung geladen.</p>
         <button class="map-btn">Karte laden</button>
+      </div>
+      <div class="info-chips">
+        <span class="info-chip">💳 Kartenzahlung</span>
+        <span class="info-chip">🐶 Hunde herzlich willkommen</span>
+        <span class="info-chip">♿ Barrierefrei</span>
       </div>
     </div>
   </div>
