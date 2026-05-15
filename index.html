@@ -8,14 +8,15 @@
   <title>No Worries Coffee – Specialty Café & Matcha in Düsseldorf Flingern</title>
   <meta name="description" content="Specialty Coffee, handgemachter Matcha und faire Preise direkt am Hermannplatz. Wechselnde internationale Röster, 4,9 ★ auf Google. Lindenstraße 142, 40233 Düsseldorf.">
   <meta name="keywords" content="Specialty Coffee Düsseldorf, Kaffee Flingern, Matcha Düsseldorf, Café Hermannplatz, Third Wave Coffee Düsseldorf, Flat White Düsseldorf, Chai Latte Düsseldorf, No Worries Coffee">
-  <link rel="canonical" href="https://{{DOMAIN}}/">
+  <link rel="canonical" href="https://no-worries-coffee-demo.vercel.app/">
+  <link rel="alternate" hreflang="de" href="https://no-worries-coffee-demo.vercel.app/">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
 
   <!-- ── OPEN GRAPH (Social Sharing) ── -->
   <meta property="og:type"        content="website">
-  <meta property="og:url"         content="https://{{DOMAIN}}/">
+  <meta property="og:url"         content="https://no-worries-coffee-demo.vercel.app/">
   <meta property="og:title"       content="No Worries Coffee – Specialty Café in Düsseldorf Flingern">
   <meta property="og:description" content="Specialty Coffee, handgemachter Matcha, faire Preise. Direkt am Hermannplatz. ★ 4,9 auf Google.">
-  <meta property="og:image"       content="https://{{DOMAIN}}/assets/img/og-image.jpg">
   <meta property="og:locale"      content="de_DE">
   <meta property="og:site_name"   content="No Worries Coffee">
 
@@ -23,7 +24,6 @@
   <meta name="twitter:card"        content="summary_large_image">
   <meta name="twitter:title"       content="No Worries Coffee – Specialty Café Düsseldorf">
   <meta name="twitter:description" content="Specialty Coffee & Matcha am Hermannplatz. ★ 4,9 auf Google.">
-  <meta name="twitter:image"       content="https://{{DOMAIN}}/assets/img/og-image.jpg">
 
   <!-- ── STRUCTURED DATA: LocalBusiness ── -->
   <script type="application/ld+json">
@@ -32,9 +32,9 @@
     "@type": "CafeOrCoffeeShop",
     "name": "No Worries Coffee",
     "description": "Specialty Coffee, handgemachter Matcha und faire Preise direkt am Hermannplatz in Düsseldorf Flingern. Wechselnde internationale Röster.",
-    "url": "https://{{DOMAIN}}",
-    "telephone": "{{TELEFON}}",
-    "email": "{{EMAIL_ADRESSE}}",
+    "url": "https://no-worries-coffee-demo.vercel.app",
+    "telephone": "",
+    "email": "",
     "priceRange": "€",
     "servesCuisine": ["Kaffee", "Specialty Coffee", "Matcha", "Tee"],
     "address": {
@@ -587,7 +587,9 @@
     filterNote: 'Das Angebot rotiert regelmäßig — aktuell verfügbare Röster bitte vor Ort erfragen.'
   };
 
-  const data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || DEFAULT;
+  let data;
+  try { data = JSON.parse(localStorage.getItem(STORAGE_KEY)) || DEFAULT; }
+  catch { data = DEFAULT; }
 
   // Render menu categories
   const block = document.getElementById('menu-block');
@@ -631,7 +633,7 @@
   document.getElementById('filter-footnote').textContent = data.filterNote || '';
 
   function esc(s) {
-    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
   }
 
   function fmtPrice(p) {
