@@ -82,7 +82,7 @@
       --ff: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: #0c0b08; }
     body { font-family: var(--ff); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.55; }
 
     /* ── NAV ── */
@@ -95,14 +95,14 @@
     }
     .nav-logo {
       text-decoration: none;
-      display: block;
-      width: 220px; height: 46px;
+      display: flex; align-items: center;
+      width: 220px; height: 56px;
       overflow: hidden;
     }
     .nav-logo img {
-      width: 220px; height: auto; /* square → 220×220 */
+      width: 220px; height: auto;
       display: block;
-      margin-top: -82px; /* shift up so the text strip is centered in 46px window */
+      margin-top: -82px;
     }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
@@ -114,7 +114,7 @@
     @media (max-width: 640px) {
       .nav-links { display: none; }
       nav { padding: 0 1.25rem; }
-      .nav-logo { width: 160px; height: 34px; }
+      .nav-logo { width: 160px; height: 56px; }
       .nav-logo img { width: 160px; margin-top: -60px; }
     }
 
@@ -446,14 +446,24 @@
     /* ── FOOTER ── */
     footer {
       background: #0c0b08; color: rgba(240,237,229,.35);
-      padding: 1.75rem 2.5rem;
+      padding: 2rem 2.5rem;
       display: flex; flex-wrap: wrap; justify-content: space-between;
-      align-items: center; gap: 1rem; font-size: .8rem;
+      align-items: center; gap: 1.25rem; font-size: .8rem;
     }
     @media (max-width: 640px) { footer { padding: 1.5rem 1.25rem; } }
     footer a { color: rgba(240,237,229,.35); text-decoration: none; }
     footer a:hover { color: var(--cream); }
     .footer-links { display: flex; gap: 1.5rem; }
+    .footer-brand {
+      display: flex; align-items: center; gap: .75rem;
+    }
+    .footer-logo-wrap {
+      width: 88px; height: 18px; overflow: hidden; flex-shrink: 0;
+    }
+    .footer-logo-wrap img {
+      width: 88px; height: auto; margin-top: -33px; display: block;
+    }
+    .footer-copy { font-size: .75rem; color: rgba(240,237,229,.25); }
   </style>
 </head>
 <body>
@@ -712,7 +722,7 @@
       und faire Preise — ein Laden, in dem du bleiben kannst so lange du willst.
     </p>
     <p style="color:var(--ink);font-weight:600;">
-      Kartenzahlung geht. Hunde auch. Bis bald.
+      Kartenzahlung selbstverständlich. Hunde herzlich willkommen.
     </p>
   </div>
 </section>
@@ -732,7 +742,7 @@
 <section id="besuch">
   <div class="besuch-inner">
     <div>
-      <p class="s-label">Wann wir da sind</p>
+      <p class="s-label">Öffnungszeiten</p>
       <h2 class="s-title">Komm vorbei.</h2>
       <ul class="hours-list">
         <li><span class="h-day">Mo – Mi</span><span class="h-time">08:30 – 17:00</span></li>
@@ -744,7 +754,7 @@
     </div>
     <div>
       <p class="s-label">Wo wir sind</p>
-      <h2 class="s-title">Find uns.</h2>
+      <h2 class="s-title">So findest du uns.</h2>
       <div class="address-card">
         <strong>No Worries Coffee</strong>
         <p>Lindenstraße 142<br>40233 Düsseldorf<br>Flingern · am Hermannplatz</p>
@@ -761,7 +771,7 @@
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="kontakt-inner">
-    <p class="s-label">Melde dich</p>
+    <p class="s-label">Kontakt</p>
     <h2 class="s-title">Schreib uns.</h2>
     <a href="mailto:{{EMAIL_ADRESSE}}?subject=Hey%20No%20Worries" class="mailto-btn">
       E-Mail schreiben
@@ -790,7 +800,15 @@
 
 <!-- FOOTER -->
 <footer>
-  <span>© 2025 No Worries Coffee, Düsseldorf</span>
+  <div class="footer-brand">
+    <div class="footer-logo-wrap">
+      <picture>
+        <source srcset="logo.webp" type="image/webp">
+        <img src="logo.png" alt="No Worries Coffee">
+      </picture>
+    </div>
+    <span class="footer-copy">© 2025 No Worries Coffee, Düsseldorf</span>
+  </div>
   <div class="footer-links">
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
