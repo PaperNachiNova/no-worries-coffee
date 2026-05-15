@@ -21,7 +21,8 @@
       display: flex; align-items: center; justify-content: space-between;
       padding: 0 2.5rem; height: 56px;
     }
-    .nav-logo { font-size: 1.25rem; font-weight: 900; letter-spacing: -.04em; text-decoration: none; color: var(--ink); }
+    .nav-logo { text-decoration: none; display: flex; align-items: center; width: 200px; height: 56px; overflow: hidden; flex-shrink: 0; }
+    .nav-logo img { width: 200px; height: auto; display: block; flex-shrink: 0; }
     .nav-back { font-size: .8rem; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: .04em; }
     .nav-back:hover { color: var(--ink); }
 
@@ -79,7 +80,7 @@
 <body>
 
 <nav>
-  <a href="index.html" class="nav-logo"><img src="logo.png" alt="No Worries Coffee" style="height:26px;width:auto;"></a>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="No Worries Coffee" width="500" height="500"></a>
   <a href="index.html" class="nav-back">← Zurück</a>
 </nav>
 
