@@ -601,7 +601,7 @@
     col.className = 'menu-col';
     col.innerHTML = `<div class="menu-col-head">${esc(cat.name)}</div>`
       + cat.items.map(it =>
-          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${esc(it.price)}</span></div>`
+          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${fmtPrice(it.price)}</span></div>`
         ).join('')
       + (cat.note ? `<p class="menu-note">${esc(cat.note).replace(/\n/g,'<br>')}</p>` : '');
     block.appendChild(col);
@@ -617,7 +617,7 @@
     wrap.className = 'menu-soft-wrap';
     wrap.innerHTML = `<div class="menu-soft-head">${esc(cat.name)}</div>`
       + cat.items.map(it =>
-          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${esc(it.price)}</span></div>`
+          `<div class="mi"><span class="mi-n">${esc(it.name)}</span><span class="mi-p">${fmtPrice(it.price)}</span></div>`
         ).join('');
     block.appendChild(wrap);
   });
@@ -633,6 +633,12 @@
 
   function esc(s) {
     return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function fmtPrice(p) {
+    const s = String(p||'');
+    if (s === '*' || s.includes('€')) return esc(s);
+    return esc(s) + ' €';
   }
 })();
 </script>
