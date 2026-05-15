@@ -11,6 +11,7 @@
   <link rel="canonical" href="https://no-worries-coffee-demo.vercel.app/">
   <link rel="alternate" hreflang="de" href="https://no-worries-coffee-demo.vercel.app/">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>☕</text></svg>">
+  <link rel="preload" as="image" href="logo.webp" type="image/webp">
 
   <!-- ── OPEN GRAPH (Social Sharing) ── -->
   <meta property="og:type"        content="website">
@@ -209,6 +210,8 @@
     #getraenke {
       padding: 7rem 3rem;
       background: var(--paper);
+      content-visibility: auto;
+      contain-intrinsic-size: 0 800px;
     }
     @media (max-width: 640px) { #getraenke { padding: 4rem 1.25rem; } }
     .menu-inner { max-width: 1080px; margin: 0 auto; }
@@ -272,7 +275,7 @@
     }
 
     /* ── FILTER ── */
-    #filter { background: var(--ink); color: var(--cream); padding: 7rem 3rem; }
+    #filter { background: var(--ink); color: var(--cream); padding: 7rem 3rem; content-visibility: auto; contain-intrinsic-size: 0 500px; }
     @media (max-width: 640px) { #filter { padding: 4rem 1.25rem; } }
     .filter-inner { max-width: 900px; margin: 0 auto; }
     #filter .s-label { color: var(--caramel); }
@@ -304,6 +307,7 @@
     /* ── ÜBER UNS ── */
     #story {
       display: grid; grid-template-columns: 1fr 1fr; min-height: 56vh;
+      content-visibility: auto; contain-intrinsic-size: 0 500px;
     }
     .story-img {
       background: linear-gradient(150deg, #f0e8d8 0%, #c8a070 40%, #5a2e10 80%, #1c0a02 100%);
@@ -331,7 +335,7 @@
     @media (max-width: 640px) { .story-text { padding: 2.5rem 1.25rem; } }
 
     /* ── ÖFFNUNGSZEITEN + ADRESSE ── */
-    #besuch { background: var(--paper); padding: 7rem 3rem; }
+    #besuch { background: var(--paper); padding: 7rem 3rem; content-visibility: auto; contain-intrinsic-size: 0 600px; }
     .besuch-inner { max-width: 1080px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
     @media (max-width: 640px) { #besuch { padding: 4rem 1.25rem; } }
     .hours-list { margin-top: 1.75rem; list-style: none; }
@@ -366,7 +370,7 @@
     @media (max-width: 768px) { .besuch-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* ── KONTAKT ── */
-    #kontakt { background: var(--ink); color: var(--cream); padding: 7rem 3rem; }
+    #kontakt { background: var(--ink); color: var(--cream); padding: 7rem 3rem; content-visibility: auto; contain-intrinsic-size: 0 400px; }
     @media (max-width: 640px) { #kontakt { padding: 4rem 1.25rem; } }
     .kontakt-inner { max-width: 560px; margin: 0 auto; }
     #kontakt .s-label { color: var(--caramel); }
@@ -432,7 +436,10 @@
 ">
   <div style="text-align:center;padding:2rem;max-width:380px;width:100%;">
     <div style="width:260px;height:54px;overflow:hidden;margin:0 auto .75rem;">
-      <img src="logo.png" alt="No Worries Coffee" style="width:260px;height:auto;display:block;margin-top:-97px;">
+      <picture>
+        <source srcset="logo.webp" type="image/webp">
+        <img src="logo.png" alt="No Worries Coffee" style="width:260px;height:auto;display:block;margin-top:-97px;" fetchpriority="high">
+      </picture>
     </div>
     <div style="font-size:.75rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#7A7060;margin-bottom:2.5rem;">Website-Demo</div>
     <input id="demo-input" type="text" placeholder="Demo-Code eingeben"
@@ -490,7 +497,12 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo"><img src="logo.png" alt="No Worries Coffee"></a>
+  <a href="#" class="nav-logo">
+    <picture>
+      <source srcset="logo.webp" type="image/webp">
+      <img src="logo.png" alt="No Worries Coffee" fetchpriority="high">
+    </picture>
+  </a>
   <ul class="nav-links">
     <li><a href="#getraenke">Getränke</a></li>
     <li><a href="#filter">Filter</a></li>
