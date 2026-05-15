@@ -471,6 +471,7 @@ function init() {
   if (!localStorage.getItem(AUTH_KEY)) {
     localStorage.setItem(AUTH_KEY, FIXED_HASH);
   }
+  hide('screen-setup');
   show('screen-login');
 }
 
