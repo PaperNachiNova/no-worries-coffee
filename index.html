@@ -357,7 +357,9 @@
       background: var(--cream); border: 1.5px solid rgba(26,23,6,.12);
       border-radius: 100px; padding: .35rem .85rem;
       font-size: .78rem; font-weight: 600; color: var(--ink);
+      text-decoration: none; transition: border-color .15s;
     }
+    a.info-chip:hover { border-color: var(--ink); }
     @media (max-width: 768px) { .besuch-inner { grid-template-columns: 1fr; gap: 2.5rem; } }
 
     /* ── KONTAKT ── */
@@ -775,7 +777,7 @@
       <div class="info-chips">
         <span class="info-chip">Kartenzahlung</span>
         <span class="info-chip">Hunde herzlich willkommen</span>
-        <span class="info-chip">Barrierefrei</span>
+        <a href="barrierefreiheit.html" class="info-chip">Barrierefrei</a>
       </div>
     </div>
   </div>
@@ -825,6 +827,7 @@
   <div class="footer-links">
     <a href="impressum.html">Impressum</a>
     <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
   </div>
 </footer>
 

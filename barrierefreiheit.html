@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barrierefreiheit – No Worries Coffee Düsseldorf</title>
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/png" href="logo.png">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cream: #F0EDE5; --ink: #1A1706; --caramel: #C8956C;
+      --muted: #7A7060; --paper: #FDFAF5; --border: rgba(26,23,6,.1);
+      --ff: system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+    }
+    body { font-family: var(--ff); background: var(--cream); color: var(--ink); font-size: 16px; line-height: 1.6; }
+    nav {
+      background: var(--cream); border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 56px;
+    }
+    .nav-logo { font-size: 1.25rem; font-weight: 900; letter-spacing: -.04em; text-decoration: none; color: var(--ink); }
+    .nav-back { font-size: .8rem; font-weight: 600; color: var(--muted); text-decoration: none; }
+    .nav-back:hover { color: var(--ink); }
+
+    .legal-wrap { max-width: 740px; margin: 0 auto; padding: 4rem 2rem 6rem; }
+    .legal-eyebrow { font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; color: var(--caramel); margin-bottom: .6rem; }
+    h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -.04em; margin-bottom: 2.5rem; line-height: 1.1; }
+
+    h2 { font-size: 1rem; font-weight: 800; margin: 2rem 0 .6rem; color: var(--ink); }
+    p { color: var(--muted); margin-bottom: .75rem; font-size: .95rem; }
+    p strong { color: var(--ink); }
+    a { color: var(--caramel); }
+
+    .check-list { list-style: none; margin: .75rem 0 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+    .check-list li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .95rem; color: var(--muted);
+    }
+    .check-list li::before {
+      content: ''; display: block; flex-shrink: 0;
+      width: 18px; height: 18px; margin-top: 2px;
+      border-radius: 50%; background: var(--ink);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6l3 3 5-5' stroke='%23FDFAF5' stroke-width='1.8' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: 12px; background-repeat: no-repeat; background-position: center;
+    }
+
+    .not-yet { list-style: none; margin: .75rem 0 1.25rem; display: flex; flex-direction: column; gap: .5rem; }
+    .not-yet li {
+      display: flex; align-items: flex-start; gap: .75rem;
+      font-size: .95rem; color: var(--muted);
+    }
+    .not-yet li::before {
+      content: ''; display: block; flex-shrink: 0;
+      width: 18px; height: 18px; margin-top: 2px;
+      border-radius: 50%; border: 1.5px solid rgba(26,23,6,.2);
+    }
+
+    footer {
+      background: #0c0b08; color: rgba(240,237,229,.35);
+      padding: 1.75rem 2.5rem;
+      display: flex; flex-wrap: wrap; justify-content: space-between;
+      align-items: center; gap: 1rem; font-size: .8rem;
+    }
+    footer a { color: rgba(240,237,229,.35); text-decoration: none; }
+    footer a:hover { color: #F0EDE5; }
+    .footer-links { display: flex; gap: 1.5rem; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo"><img src="logo.png" alt="No Worries Coffee" style="height:26px;width:auto;"></a>
+  <a href="index.html" class="nav-back">← Zurück</a>
+</nav>
+
+<div class="legal-wrap">
+  <p class="legal-eyebrow">Bei uns</p>
+  <h1>Barrierefreiheit</h1>
+
+  <p>
+    No Worries Coffee steht für ein Café, in dem sich alle willkommen fühlen sollen —
+    unabhängig davon, wie man sich fortbewegt, kommuniziert oder die Welt wahrnimmt.
+    Hier findest du, was wir aktuell anbieten und wo wir noch besser werden wollen.
+  </p>
+
+  <h2>Das Café</h2>
+  <ul class="check-list">
+    <li>Stufenfreier Eingang — das Café ist ebenerdig erreichbar</li>
+    <li>Breite Türöffnung — gut für Rollstühle und Rollatoren</li>
+    <li>Ausreichend Abstand zwischen den Tischen</li>
+    <li>Sitzplätze in verschiedenen Höhen (Stühle, Barhocker, Sofabereich)</li>
+    <li>Hunde herzlich willkommen — Wassernapf auf Anfrage</li>
+  </ul>
+
+  <h2>Bezahlen & Bestellen</h2>
+  <ul class="check-list">
+    <li>Kartenzahlung an der Theke (Girocard, Mastercard, Visa)</li>
+    <li>Kontaktloses Bezahlen möglich</li>
+    <li>Bestellungen können auch schriftlich aufgegeben werden</li>
+  </ul>
+
+  <h2>Was wir noch verbessern wollen</h2>
+  <ul class="not-yet">
+    <li>Barrierefreie Toilette — aktuell nicht vorhanden</li>
+    <li>Speisekarte in Brailleschrift — in Planung</li>
+    <li>Induktionsschleife für Hörgeräte — noch nicht eingebaut</li>
+  </ul>
+
+  <h2>Feedback & Kontakt</h2>
+  <p>
+    Du hast einen konkreten Hinweis oder eine Frage zur Barrierefreiheit vor Ort?
+    Schreib uns direkt — wir freuen uns über jede Rückmeldung und nehmen sie ernst.
+  </p>
+  <p>
+    <a href="mailto:{{EMAIL_ADRESSE}}">E-Mail schreiben</a> · oder einfach vorbeikommen,
+    wir sind fast jeden Tag da.
+  </p>
+
+  <h2>Website</h2>
+  <p>
+    Diese Website ist als einfaches HTML-Dokument aufgebaut — kein aufwändiges JavaScript,
+    keine externen Tracker. Sie ist mit Screenreadern kompatibel, unterstützt
+    Systemschriften und skaliert mit den Browsereinstellungen.
+    Bilder haben Alt-Texte. Links sind eindeutig beschriftet.
+  </p>
+  <p>
+    Stößt du auf ein Problem mit der Website? Schreib uns kurz — wir beheben es.
+  </p>
+</div>
+
+<footer>
+  <span>© 2025 No Worries Coffee, Düsseldorf</span>
+  <div class="footer-links">
+    <a href="impressum.html">Impressum</a>
+    <a href="datenschutz.html">Datenschutz</a>
+    <a href="barrierefreiheit.html">Barrierefreiheit</a>
+  </div>
+</footer>
+
+</body>
+</html>
