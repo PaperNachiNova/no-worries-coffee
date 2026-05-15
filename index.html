@@ -402,6 +402,39 @@
     }
     .kontakt-sub a { color: var(--caramel); }
 
+    /* ── GUTSCHEIN ── */
+    #gutschein {
+      background: var(--caramel);
+      padding: 5rem 3rem;
+      text-align: center;
+      content-visibility: auto;
+      contain-intrinsic-size: 0 300px;
+    }
+    .gutschein-inner { max-width: 600px; margin: 0 auto; }
+    .gutschein-eyebrow {
+      font-size: .7rem; font-weight: 700; letter-spacing: .18em;
+      text-transform: uppercase; color: rgba(26,23,6,.55);
+      margin-bottom: .75rem;
+    }
+    .gutschein-h {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; letter-spacing: -.04em; color: var(--ink);
+      line-height: 1.05; margin-bottom: 1rem;
+    }
+    .gutschein-sub {
+      font-size: 1rem; color: rgba(26,23,6,.65);
+      line-height: 1.7; margin-bottom: 2rem;
+    }
+    .gutschein-btn {
+      display: inline-block;
+      background: var(--ink); color: var(--cream);
+      padding: 1rem 2.5rem; border-radius: 100px;
+      font-weight: 900; font-size: 1rem; text-decoration: none;
+      transition: opacity .2s; letter-spacing: .01em;
+    }
+    .gutschein-btn:hover { opacity: .8; }
+    @media (max-width: 640px) { #gutschein { padding: 4rem 1.25rem; } }
+
     /* ── FOOTER ── */
     footer {
       background: #0c0b08; color: rgba(240,237,229,.35);
@@ -509,6 +542,7 @@
     <li><a href="#story">Über uns</a></li>
     <li><a href="#besuch">Besuch</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="https://noworries.dgft.com" target="_blank" rel="noopener noreferrer" style="color:var(--caramel);font-weight:800;">Gutschein</a></li>
   </ul>
 </nav>
 
@@ -721,6 +755,21 @@
       Öffnet dein Mail-Programm mit vorausgefüllter Empfängeradresse.<br>
       Mehr Infos zum Datenschutz: <a href="datenschutz.html">Datenschutzerklärung</a>
     </p>
+  </div>
+</section>
+
+<!-- GUTSCHEIN -->
+<section id="gutschein">
+  <div class="gutschein-inner">
+    <p class="gutschein-eyebrow">Das perfekte Geschenk</p>
+    <h2 class="gutschein-h">Digitale Geschenkkarte</h2>
+    <p class="gutschein-sub">
+      Schenk jemandem einen guten Kaffee — oder gönn ihn dir selbst.
+      Digitale Gutscheinkarten für No Worries Coffee, einlösbar vor Ort.
+    </p>
+    <a href="https://noworries.dgft.com" target="_blank" rel="noopener noreferrer" class="gutschein-btn">
+      Gutschein kaufen
+    </a>
   </div>
 </section>
 
