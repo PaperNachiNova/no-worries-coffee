@@ -433,7 +433,35 @@
       transition: opacity .2s; letter-spacing: .01em;
     }
     .gutschein-btn:hover { opacity: .8; }
-    @media (max-width: 640px) { #gutschein { padding: 4rem 1.25rem; } }
+    @media (max-width: 640px) { #gutschein { display: none; } }
+
+    /* ── GUTSCHEIN MOBIL (kompakt, vor Besuch) ── */
+    #gutschein-mobile {
+      display: none;
+      background: var(--caramel);
+      padding: 1.25rem;
+    }
+    .gm-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    .gm-text .gm-label {
+      font-size: .65rem; font-weight: 700; letter-spacing: .14em;
+      text-transform: uppercase; color: rgba(26,23,6,.5);
+      display: block; margin-bottom: .15rem;
+    }
+    .gm-text strong {
+      font-size: .95rem; font-weight: 900; color: var(--ink); letter-spacing: -.02em;
+    }
+    .gm-btn {
+      display: inline-block; white-space: nowrap;
+      background: var(--ink); color: var(--cream);
+      padding: .6rem 1.25rem; border-radius: 100px;
+      font-weight: 800; font-size: .82rem; text-decoration: none;
+      flex-shrink: 0; transition: opacity .2s;
+    }
+    .gm-btn:hover { opacity: .8; }
+    @media (max-width: 640px) { #gutschein-mobile { display: block; } }
 
     /* ── FOOTER ── */
     footer {
@@ -712,6 +740,17 @@
     </p>
   </div>
 </section>
+
+<!-- GUTSCHEIN MOBIL -->
+<div id="gutschein-mobile">
+  <div class="gm-inner">
+    <div class="gm-text">
+      <span class="gm-label">Geschenkidee</span>
+      <strong>Digitale Geschenkkarte</strong>
+    </div>
+    <a href="https://noworries.dgft.com" target="_blank" rel="noopener noreferrer" class="gm-btn">Gutschein kaufen</a>
+  </div>
+</div>
 
 <!-- ÖFFNUNGSZEITEN & ANFAHRT -->
 <section id="besuch">
