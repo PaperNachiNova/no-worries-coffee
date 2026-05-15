@@ -152,13 +152,15 @@
     .hero-ring {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 340px; height: 340px; border-radius: 50%;
+      width: 340px; height: 340px;
+      border-radius: 28%; /* squircle fallback */
+      clip-path: url(#squircle);
       background: radial-gradient(circle at 38% 35%,
         #fff4e8 0%, #d4956a 22%, #8b4010 55%, #2c1008 80%, #0f0400 100%);
-      box-shadow:
-        0 0 0 20px rgba(200,149,108,.12),
-        0 0 0 40px rgba(200,149,108,.06),
-        0 50px 100px rgba(10,4,0,.5);
+      filter:
+        drop-shadow(0 0 18px rgba(200,149,108,.15))
+        drop-shadow(0 0 36px rgba(200,149,108,.08))
+        drop-shadow(0 40px 80px rgba(10,4,0,.55));
     }
     .hero-ring::before {
       content: '';
@@ -214,7 +216,7 @@
     .menu-block {
       display: grid; grid-template-columns: 1fr 1fr;
       border: 1.5px solid rgba(26,23,6,.1);
-      border-radius: 16px; overflow: hidden;
+      border-radius: 24px; overflow: hidden;
     }
     .menu-col {
       padding: 2.5rem 2.75rem;
@@ -276,7 +278,7 @@
     #filter .s-label { color: var(--caramel); }
     #filter .s-title { color: var(--cream); }
     .filter-board {
-      border: 1px solid rgba(200,149,108,.2); border-radius: 16px;
+      border: 1px solid rgba(200,149,108,.2); border-radius: 24px;
       overflow: hidden;
     }
     .filter-board-head {
@@ -310,9 +312,11 @@
     .story-img-pill {
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%);
-      width: 160px; height: 220px; border-radius: 80px;
+      width: 160px; height: 220px;
+      border-radius: 28%; /* squircle approximation */
+      clip-path: url(#squircle);
       background: linear-gradient(160deg, #8b5030 0%, #3d1808 60%, #160600 100%);
-      box-shadow: 0 30px 70px rgba(0,0,0,.35);
+      filter: drop-shadow(0 30px 70px rgba(0,0,0,.35));
     }
     .story-text {
       padding: 5rem 4rem; display: flex; flex-direction: column; justify-content: center;
@@ -341,13 +345,13 @@
     .h-time { font-weight: 800; }
     .address-card {
       margin-top: 1.75rem;
-      border: 1.5px solid rgba(26,23,6,.1); border-radius: 14px;
+      border: 1.5px solid rgba(26,23,6,.1); border-radius: 20px;
       padding: 1.75rem 2rem;
     }
     .address-card strong { font-size: 1.05rem; font-weight: 900; display: block; margin-bottom: .5rem; }
     .address-card p { color: var(--muted); line-height: 1.75; font-size: .9rem; }
     .map-placeholder {
-      margin-top: 1.25rem; border-radius: 12px;
+      margin-top: 1.25rem; border-radius: 18px;
       background: var(--cream-dark);
       border: 1.5px dashed rgba(26,23,6,.15);
       min-height: 200px; display: flex; flex-direction: column;
@@ -373,7 +377,7 @@
     .kff label { font-size: .7rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(240,237,229,.5); }
     .kff input, .kff textarea {
       background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.13);
-      border-radius: 9px; padding: .85rem 1rem; color: var(--cream);
+      border-radius: 14px; padding: .85rem 1rem; color: var(--cream);
       font-family: var(--ff); font-size: .9rem; outline: none; transition: border-color .2s;
     }
     .kff input:focus, .kff textarea:focus { border-color: var(--caramel); }
@@ -409,6 +413,15 @@
   </style>
 </head>
 <body>
+
+<!-- SQUIRCLE DEFINITION (Apple continuous-corner curve) -->
+<svg width="0" height="0" style="position:absolute;pointer-events:none" aria-hidden="true">
+  <defs>
+    <clipPath id="squircle" clipPathUnits="objectBoundingBox">
+      <path d="M .5 0 L .775 0 C .876 0 1 .124 1 .225 L 1 .775 C 1 .876 .876 1 .775 1 L .225 1 C .124 1 0 .876 0 .775 L 0 .225 C 0 .124 .124 0 .225 0 Z"/>
+    </clipPath>
+  </defs>
+</svg>
 
 <!-- DEMO GATE -->
 <div id="demo-gate" style="
