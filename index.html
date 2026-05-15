@@ -95,16 +95,17 @@
     }
     .nav-logo {
       text-decoration: none;
-      display: block;
-      width: 220px; height: 56px;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      width: 220px;
       overflow: hidden;
-      align-self: center;
+      flex-shrink: 0;
     }
-    .nav-logo picture { display: block; line-height: 0; }
+    .nav-logo picture { display: block; flex-shrink: 0; }
     .nav-logo img {
       width: 220px; height: auto;
       display: block;
-      margin-top: -87px;
     }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a {
@@ -116,8 +117,8 @@
     @media (max-width: 640px) {
       .nav-links { display: none; }
       nav { padding: 0 1.25rem; }
-      .nav-logo { width: 160px; height: 56px; }
-      .nav-logo img { width: 160px; margin-top: -63px; }
+      .nav-logo { width: 160px; }
+      .nav-logo img { width: 160px; }
     }
 
     /* ── HERO ── */
@@ -553,7 +554,7 @@
   <a href="#" class="nav-logo">
     <picture>
       <source srcset="logo.webp" type="image/webp">
-      <img src="logo.png" alt="No Worries Coffee" fetchpriority="high">
+      <img src="logo.png" alt="No Worries Coffee" width="500" height="500" fetchpriority="high">
     </picture>
   </a>
   <ul class="nav-links">
