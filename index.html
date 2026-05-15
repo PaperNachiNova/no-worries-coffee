@@ -151,6 +151,13 @@
       position: relative; overflow: hidden;
       background: url('hero.webp') center top / cover no-repeat;
     }
+    .hero-right::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(240,237,229,.2) 0%, transparent 35%),
+                  linear-gradient(to top, rgba(26,23,6,.25) 0%, transparent 50%);
+      pointer-events: none;
+    }
     @media (max-width: 768px) {
       #hero { grid-template-columns: 1fr; }
       .hero-right { min-height: 260px; order: -1; }
@@ -539,7 +546,7 @@
   <ul class="nav-links">
     <li><a href="#getraenke">Getränke</a></li>
     <li><a href="#filter">Filter</a></li>
-    <li><a href="#story">Über uns</a></li>
+    <li><a href="#story">Story</a></li>
     <li><a href="#besuch">Besuch</a></li>
     <li><a href="#kontakt">Kontakt</a></li>
     <li><a href="https://noworries.dgft.com" target="_blank" rel="noopener noreferrer" style="color:var(--caramel);font-weight:800;">Gutschein</a></li>
@@ -549,24 +556,24 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-left">
-    <p class="hero-eyebrow">Specialty Coffee · Flingern · Düsseldorf</p>
-    <h1 class="hero-h1">Kaffee.<br>Ohne<br>Stress.</h1>
+    <p class="hero-eyebrow">Flingern · Düsseldorf</p>
+    <h1 class="hero-h1">No<br>Worries.</h1>
     <p class="hero-sub">
-      Wechselnde Röster aus aller Welt, handgemachter Matcha und ein Ort,
-      an dem man sich einfach wohlfühlt — direkt am Hermannplatz.
+      Specialty Coffee von den besten Röstereien der Welt. Handgemachter Matcha.
+      Und eine Atmosphäre, die einfach sitzt — komm vorbei.
     </p>
-    <a href="#getraenke" class="hero-cta">Zur Karte</a>
+    <a href="#getraenke" class="hero-cta">Was wir machen</a>
   </div>
   <div class="hero-right"></div>
 </section>
 
 <!-- RATING STRIP -->
 <div class="rating-strip">
-  <span><strong>★ 4,9</strong></span>
+  <span><strong>★ 4,9</strong> auf Google</span>
   <span class="rs-dot">·</span>
-  <span>177 Google-Bewertungen</span>
+  <span>„Man fühlt sich wie unter Freunden"</span>
   <span class="rs-dot">·</span>
-  <span>„Bester Kaffee in ganz Düsseldorf"</span>
+  <span>„Bester Matcha in ganz Düsseldorf"</span>
   <span class="rs-dot">·</span>
   <span>NeoTaste-Partner</span>
 </div>
@@ -574,8 +581,8 @@
 <!-- MENÜ -->
 <section id="getraenke">
   <div class="menu-inner">
-    <p class="s-label">Was wir machen</p>
-    <h2 class="s-title">Die Karte</h2>
+    <p class="s-label">Die Karte</p>
+    <h2 class="s-title">Was du bekommst.</h2>
     <div class="menu-block" id="menu-block"></div>
   </div>
 </section>
@@ -583,10 +590,10 @@
 <!-- FILTER COFFEE -->
 <section id="filter">
   <div class="filter-inner">
-    <p class="s-label">Wechselndes Angebot</p>
-    <h2 class="s-title">Filter Kaffee</h2>
+    <p class="s-label">Immer anders. Immer gut.</p>
+    <h2 class="s-title">Filter.</h2>
     <div class="filter-board">
-      <div class="filter-board-head">— Filter —</div>
+      <div class="filter-board-head">aktuell im Angebot</div>
       <div id="filter-entries"></div>
     </div>
     <p class="filter-footnote" id="filter-footnote"></p>
@@ -693,18 +700,18 @@
   <div class="story-img"></div>
   <div class="story-text">
     <p class="s-label">Wer wir sind</p>
-    <h2 class="s-title">No Worries.</h2>
+    <h2 class="s-title">Kein Stress.<br>Nur guter Kaffee.</h2>
     <p>
-      Mitten in Flingern, direkt am Hermannplatz: ein kleines Café mit großer Leidenschaft
-      für <strong>Specialty Coffee</strong>. Wir arbeiten mit wechselnden internationalen Röstereien
-      und bereiten jeden Kaffee mit Sorgfalt zu.
+      Wir sind ein kleines Café in Flingern mit einem klaren Anspruch:
+      <strong>richtig guter Kaffee</strong>, ohne Dünkel. Wechselnde Röstereien
+      aus aller Welt, jede Tasse mit Sorgfalt gemacht.
     </p>
     <p>
-      Dazu: handgemachter <strong>Matcha</strong>, faire Preise, eigene Hafermilch und ein Team,
-      das sich ehrlich freut, wenn du reinkommst.
+      Handgemachter <strong>Matcha</strong>, eigene Hafermilch, faire Preise —
+      und ein Laden, in dem du bleiben kannst so lange du willst.
     </p>
-    <p>
-      Karte zahlen geht natürlich. Hunde willkommen.
+    <p style="color:var(--ink);font-weight:600;">
+      Karte geht. Hunde auch. Wir freuen uns auf dich.
     </p>
   </div>
 </section>
@@ -725,7 +732,7 @@
   <div class="besuch-inner">
     <div>
       <p class="s-label">Wann wir da sind</p>
-      <h2 class="s-title">Öffnungszeiten</h2>
+      <h2 class="s-title">Komm vorbei.</h2>
       <ul class="hours-list">
         <li><span class="h-day">Mo – Mi</span><span class="h-time">08:30 – 17:00</span></li>
         <li><span class="h-day">Do</span><span class="h-time">08:30 – 17:00</span></li>
@@ -736,14 +743,14 @@
     </div>
     <div>
       <p class="s-label">Wo wir sind</p>
-      <h2 class="s-title">Anfahrt</h2>
+      <h2 class="s-title">Find uns.</h2>
       <div class="address-card">
         <strong>No Worries Coffee</strong>
         <p>Lindenstraße 142<br>40233 Düsseldorf<br>Flingern · am Hermannplatz</p>
       </div>
       <div class="map-placeholder">
         <span style="font-size:1.5rem">📍</span>
-        <p>Karte wird nach Ihrer Datenschutz-Zustimmung geladen.</p>
+        <p>Karte wird nach deiner Datenschutz-Zustimmung geladen.</p>
         <button class="map-btn">Karte laden</button>
       </div>
     </div>
@@ -753,14 +760,14 @@
 <!-- KONTAKT -->
 <section id="kontakt">
   <div class="kontakt-inner">
-    <p class="s-label">Schreib uns</p>
-    <h2 class="s-title">Kontakt</h2>
-    <a href="mailto:{{EMAIL_ADRESSE}}?subject=Anfrage%20No%20Worries%20Coffee" class="mailto-btn">
+    <p class="s-label">Sag hallo</p>
+    <h2 class="s-title">Schreib uns.</h2>
+    <a href="mailto:{{EMAIL_ADRESSE}}?subject=Hey%20No%20Worries" class="mailto-btn">
       E-Mail schreiben
     </a>
     <p class="kontakt-sub">
-      Öffnet dein Mail-Programm mit vorausgefüllter Empfängeradresse.<br>
-      Mehr Infos zum Datenschutz: <a href="datenschutz.html">Datenschutzerklärung</a>
+      Oder einfach vorbeikommen — wir sind fast jeden Tag da.<br>
+      <a href="datenschutz.html">Datenschutzerklärung</a>
     </p>
   </div>
 </section>
