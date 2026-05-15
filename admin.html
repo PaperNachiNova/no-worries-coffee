@@ -207,23 +207,6 @@
     }
     .filter-note-ta:focus { border-color: var(--caramel); }
 
-    /* ── PASSWORD CHANGE ── */
-    .pw-section {
-      background: var(--paper); border: 1.5px solid var(--border);
-      border-radius: 16px; padding: 1.5rem; margin-bottom: 3rem;
-    }
-    .pw-row { display: flex; gap: .75rem; align-items: flex-end; flex-wrap: wrap; }
-    .pw-field { display: flex; flex-direction: column; gap: .35rem; flex: 1; min-width: 140px; }
-    .pw-field label { font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-    .pw-field input {
-      font-family: var(--ff); font-size: .9rem; border: 1.5px solid var(--border);
-      border-radius: 9px; padding: .65rem .9rem; background: var(--cream);
-      color: var(--ink); outline: none; transition: border-color .2s;
-    }
-    .pw-field input:focus { border-color: var(--caramel); }
-    .pw-msg { font-size: .78rem; margin-top: .75rem; }
-    .pw-msg.ok { color: var(--green); }
-    .pw-msg.err { color: var(--red); }
 
     @media (max-width: 600px) {
       .filter-entry-row { grid-template-columns: 1fr 1fr; }
@@ -301,27 +284,6 @@
       <div class="filter-note-wrap">
         <div class="filter-note-label">Hinweis unter dem Angebot</div>
         <textarea class="filter-note-ta" id="filter-note-ta" rows="2"></textarea>
-      </div>
-    </div>
-
-    <!-- PASSWORT ÄNDERN -->
-    <div class="admin-section">
-      <div class="admin-section-head">
-        <h2 class="admin-section-title">Passwort ändern</h2>
-      </div>
-      <div class="pw-section">
-        <div class="pw-row">
-          <div class="pw-field">
-            <label>Neues Passwort</label>
-            <input type="password" id="pw-new1" placeholder="Neues Passwort" autocomplete="new-password">
-          </div>
-          <div class="pw-field">
-            <label>Wiederholen</label>
-            <input type="password" id="pw-new2" placeholder="Wiederholen" autocomplete="new-password">
-          </div>
-          <button class="add-btn" onclick="changePassword()">Ändern</button>
-        </div>
-        <div class="pw-msg" id="pw-msg"></div>
       </div>
     </div>
 
@@ -430,18 +392,6 @@ async function login() {
   }
 }
 
-async function changePassword() {
-  const p1  = document.getElementById('pw-new1').value;
-  const p2  = document.getElementById('pw-new2').value;
-  const msg = document.getElementById('pw-msg');
-  if (p1.length < 6) { msg.className='pw-msg err'; msg.textContent='Mindestens 6 Zeichen.'; return; }
-  if (p1 !== p2)      { msg.className='pw-msg err'; msg.textContent='Passwörter stimmen nicht überein.'; return; }
-  localStorage.setItem(AUTH_KEY, await sha256(p1));
-  document.getElementById('pw-new1').value = '';
-  document.getElementById('pw-new2').value = '';
-  msg.className='pw-msg ok'; msg.textContent='✓ Passwort geändert.';
-  setTimeout(() => msg.textContent='', 3000);
-}
 
 function logout() {
   hide('screen-dashboard');
